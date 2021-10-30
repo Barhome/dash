@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-app
+  labels: frontend
+  annotations: 
+    "sidecar.jaegertracing.io/inject": "true"  
 spec:
   replicas: 3
   selector:
@@ -14,9 +17,10 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ghcr.io/thejaysmith/myfrontend:v1
+        image: barhome/dashboard-frontend:latest
         ports:
         - containerPort: 8080
+      restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service
@@ -28,4 +32,5 @@ spec:
   ports:
     - port: 8080
       targetPort: 8080
+      nodePort: 30000
   type: LoadBalancer
