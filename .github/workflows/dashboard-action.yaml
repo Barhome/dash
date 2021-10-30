@@ -30,8 +30,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./board/frontend
-          file: ./board/frontend/Dockerfile
+          context: ./board/reference-app/frontend
+          file: ./board/reference-app/frontend/Dockerfile
           platforms: linux/amd64
           push: true
           tags: barhome/dashboard-frontend:latest
@@ -40,8 +40,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./board/trial
-          file: ./board/trial/Dockerfile
+          context: ./board/reference-app/trial
+          file: ./board/reference-app/trial/Dockerfile
           platforms: linux/amd64
           push: true
           tags: barhome/dashboard-trial:latest
@@ -49,8 +49,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./board/backend
-          file: ./board/backend/Dockerfile
+          context: ./board/reference-app/backend
+          file: ./board/reference-app/backend/Dockerfile
           platforms: linux/amd64
           push: true
           tags: barhome/dashboard-backend:latest
