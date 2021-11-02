@@ -25,10 +25,7 @@ TracerProvider(
     )
 
 tracer = trace.get_tracer(__name__)
-jaeger_exporter = JaegerExporter(
-    agent_host_name='localhost',
-    agent_port = 8085
-)
+jaeger_exporter = JaegerExporter()
 
 span_processor = BatchSpanProcessor(jaeger_exporter)
 trace.get_tracer_provider().add_span_processor(span_processor)
