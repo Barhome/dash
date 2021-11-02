@@ -1,32 +1,31 @@
 from flask import Flask, render_template, request, jsonify
 import pymongo
 from flask_pymongo import PyMongo
-from jaeger_client import Config
-from jaeger_client.metrics.prometheus import PrometheusMetricsFactory
+
+
 from opentelemetry import trace
 from opentelemetry.exporter.jaeger.thrift import JaegerExporter
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
-from opentelemetry.instrumentation.requests import RequestsInstrumentor
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.resources import SERVICE_NAME , Resource
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
 
-
-app = Flask(__name__)
-
-FlaskInstrumentor().instrument_app(app)
-RequestsInstrumentor().instrument()
-
 trace.set_tracer_provider(
 TracerProvider(
     resource=Resource.create({SERVICE_NAME: 'hello-service'})))
 
-tracer = trace.get_tracer(__name__)
 jaeger_exporter = JaegerExporter()
 
 span_processor = BatchSpanProcessor(jaeger_exporter)
 trace.get_tracer_provider().add_span_processor(span_processor)
+
+tracer = trace.get_tracer(__name__)
+
+
+app = Flask(__name__)
+FlaskInstrumentor().instrument_app(app)
+
 app.config['MONGO_DBNAME'] = 'example-mongodb'
 app.config['MONGO_URI'] = 'mongodb://example-mongodb-svc.default.svc.cluster.local:27017/example-mongodb'
 
