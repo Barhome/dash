@@ -8,7 +8,7 @@ from opentelemetry.exporter.jaeger.thrift import JaegerExporter
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.requests import RequestsInstrumentor
 from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.resources import SERVICE_NAME , RESOURCE
+from opentelemetry.sdk.resources import SERVICE_NAME , Resource
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
 
@@ -20,9 +20,7 @@ RequestsInstrumentor().instrument()
 
 trace.set_tracer_provider(
 TracerProvider(
-    resource=RESOURCE.create({SERVICE_NAME: 'hello-service'})
-    )
-    )
+    resource=Resource.create({SERVICE_NAME: 'hello-service'})))
 
 tracer = trace.get_tracer(__name__)
 jaeger_exporter = JaegerExporter()
