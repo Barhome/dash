@@ -61,7 +61,7 @@ def homepage():
         hello_world = 'Hello World'
         span.set_tag('helloworldtag','tag value for hello world tag')
 
-    return "Hello World"
+    return hello_world
 
 
 @app.route('/api')
