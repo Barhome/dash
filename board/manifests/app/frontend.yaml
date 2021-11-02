@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-app
+  labels:
+    app: frontend
 spec:
   replicas: 3
   selector:
@@ -14,9 +16,11 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ghcr.io/thejaysmith/myfrontend:v1
+        image: barhome/dashboard-frontend:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
+      restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service

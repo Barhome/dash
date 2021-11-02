@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, jsonify
-
+import logging
 import pymongo
 from flask_pymongo import PyMongo
-
 from jaeger_client import Config
 from jaeger_client.metrics.prometheus import PrometheusMetricsFactory
 from opentelemetry import trace
@@ -59,7 +58,8 @@ tracer_star = init_tracer('third_star_service')
 @app.route('/')
 def homepage():
     with tracer_hello.start_span('HelloWorldSpan') as span:
-        span.set_tag('helloworldtag','tagvalueforhelloworldtag')
+        hello_world = 'Hello World'
+        span.set_tag('helloworldtag','tag value for hello world tag')
 
     return "Hello World"
 
@@ -68,7 +68,7 @@ def homepage():
 def my_api():
     with tracer_api.start_span('ApiSpan') as span:
         answer = "something"
-        span.set_tag('apitag','tagvalueforapi')
+        span.set_tag('apitag','tag value for api')
     return jsonify(repsonse=answer)
 
 @app.route('/star', methods=['POST'])

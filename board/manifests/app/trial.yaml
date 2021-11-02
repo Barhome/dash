@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: trial-app
-  annotations: 
-    "sidecar.jaegertracing.io/inject": "true"
+  labels:
+    app: trial
 spec:
   replicas: 3
   selector:
@@ -16,9 +16,11 @@ spec:
     spec:
       containers:
       - name: trial
-        image: ghcr.io/thejaysmith/trial:v1
+        image: barhome/dashboard-trial:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
+      restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service
