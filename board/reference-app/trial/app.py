@@ -1,4 +1,4 @@
-from flask import Flask, render_template, requests, jsonify
+from flask import Flask, render_template, request, jsonify
 import logging
 from jaeger_client import Config
 from jaeger_client.metrics.prometheus import PrometheusMetricsFactory
@@ -54,7 +54,7 @@ tracer = init_tracer('first-service')
 
 @app.route('/')
 def homepage():
-    # return render_template("main.html")
+    return render_template("main.html")
     with tracer.start_span('get-python-jobs') as span:
         homepages = []
         res = requests.get('https://jobs.github.com/positions.json?description=python')
