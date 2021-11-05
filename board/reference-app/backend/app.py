@@ -9,6 +9,7 @@ from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.resources import SERVICE_NAME , Resource
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from prometheus_flask_exporter import PrometheusMetrics 
 
 
 trace.set_tracer_provider(
@@ -25,12 +26,14 @@ tracer = trace.get_tracer(__name__)
 
 app = Flask(__name__)
 FlaskInstrumentor().instrument_app(app)
+metrics = PrometheusMetrics(app)
 
 app.config['MONGO_DBNAME'] = 'example-mongodb'
 app.config['MONGO_URI'] = 'mongodb://example-mongodb-svc.default.svc.cluster.local:27017/example-mongodb'
 
 mongo = PyMongo(app)
 
+metrics.info('app_info','Application info', version='1.0.3')
 
 @app.route('/')
 def homepage():
