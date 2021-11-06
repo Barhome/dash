@@ -10,7 +10,8 @@ from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.resources import SERVICE_NAME , Resource
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
-from prometheus_flask_exporter.multiprocess import GunicornInternalPrometheusMetrics
+
+from prometheus_flask_exporter import PrometheusMetrics
 
 trace.set_tracer_provider(
 TracerProvider(
@@ -26,8 +27,8 @@ tracer = trace.get_tracer(__name__)
 
 app = Flask(__name__)
 FlaskInstrumentor().instrument_app(app)
-metrics = GunicornInternalPrometheusMetrics(app)
-
+metrics = PrometheusMetrics(app)
+metrics.info('app_info', 'Application info', version='1.0.3')
 
 
 app.config['MONGO_DBNAME'] = 'example-mongodb'
