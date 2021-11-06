@@ -27,7 +27,6 @@ app = Flask(__name__)
 FlaskInstrumentor().instrument_app(app)
 metrics = GunicornInternalPrometheusMetrics(app)
 
-metrics.info('app_info','Application info', version='1.0.3')
 
 
 app.config['MONGO_DBNAME'] = 'example-mongodb'
