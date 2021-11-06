@@ -32,7 +32,8 @@ spec:
   selector:
     app: backend
   ports:
-    - port: 8081
+    - name: backend
+      port: 8081
       targetPort: 8080
   type: LoadBalancer
 ---
@@ -49,7 +50,7 @@ spec:
     matchLabels:
       app: backend
   endpoints:
-  - port: 8081
+  - port: backend
     path: /metrics
     interval: 15s
   namespaceSelector:
