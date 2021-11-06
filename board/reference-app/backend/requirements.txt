@@ -2,7 +2,6 @@ Flask==1.1.2
 requests==2.23.0
 pylint==2.4.0
 pymongo==3.11.0
-requests==2.23.0
 Flask-PyMongo==2.3.0
 pylint==2.4.0
 jaeger-client==4.3.0
@@ -12,6 +11,6 @@ opentelemetry-instrumentation==0.25b2
 opentelemetry-instrumentation-flask==0.25b2
 opentelemetry-instrumentation-requests==0.25b2
 opentelemetry-exporter-jaeger-thrift==1.6.2
-gunicorn
-prometheus_client
-prometheus_flask_exporter
+gunicorn==20.0.4
+prometheus-client==0.12.0
+prometheus_flask_exporter==0.18.5
