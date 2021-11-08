@@ -38,6 +38,8 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
+@metrics.counter('test_counter','number of requests',
+labels={'firstlabel':'test_hello','secondlabel':'helloworld'})
 def homepage():
     with tracer.start_as_current_span('hello-world'):
         hello_world = 'Hello World'
