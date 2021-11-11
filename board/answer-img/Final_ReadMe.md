@@ -43,7 +43,7 @@
   3. no. of total requests in a day 
   4. failing http request total time in a month
   5. successful http total time request in a month
-  note using this simple equation **(total successful time / total failing time + total successful time) %** witll give us the total uptime for our applications in a month.
+  note using this simple equation **(total successful time / total failing time + total successful time) %** this  gives us the total uptime for our applications in a specified period.
 
 
 ### Create a Dashboard to measure our Slis
