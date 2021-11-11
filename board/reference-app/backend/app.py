@@ -27,7 +27,7 @@ tracer = trace.get_tracer(__name__)
 
 app = Flask(__name__)
 FlaskInstrumentor().instrument_app(app)
-metrics = PrometheusMetrics(app)
+metrics = PrometheusMetrics(app,group_by='endpoint')
 metrics.info('app_info', 'Application info', version='1.0.3')
 
 
