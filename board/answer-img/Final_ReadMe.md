@@ -56,8 +56,9 @@
   3. SLI: total failing http requests a day is less than or equal to 0.1%
 
 - with an SLO of request response time
-  4. SLO: 99.9% daily latency 
-  5. SLI: 99.9% of the no. of requstes with response time less than or equal to 5 ms
+
+  1. SLO: 99.9% daily latency 
+  2. SLI: 99.9% of the no. of requstes with response time less than or equal to 5 ms
 
 
 ### Create a Dashboard to measure our Slis
@@ -126,20 +127,24 @@
 
 2. SLI: Total successful http requests is more than or equal to 99.95% in a month
 
-3. SLI: Total failing http requests a day is less than or equal to 0.05% in a month
+3. SLI: Total failing http requests is less than or equal to 0.05% in a month
+
+4. SLI: the time of total successful http requests is more than or equal to 99.95%  in  a month
 
 
 ### Building KPIs for our plan 
-to create a kpi you need a title for the kpi, a metric, current value and target value
+to create a kpi you need a title for the kpi, a metric, current value and target value 
 
 - For an SLI like Total successful http requests is more than or equal to 99.95% in a month
-  1. the metric we are using is total succeful http requests in relation to the total http requests
-  2. the current value is around 82% as shown in the dashboard 
-  3. the target value is more or equeal to 99.95%
-- For an SLI like Total failing http requests a day is less than or equal to 0.05% in a month
-  1. the metric we are using is totoal failing http requests in relation to the total http requests
-  2. the current value is around 18% as shown in the dashboard
-  3. the target value is less or equal to 0.05%
+  1. first KPI is to check if the Total successful http requests is more than or equal to 99.95% on daily basis is more or equal to 99.95
+  2. second KPI is to check if the error budget is less than 0.05 on daily basis 
+
+- For an SLI like Total successful http requests is more than or equal to 99.95% in a month
+  1. first KPI is to check if the Total failing http requests is less than or equal to 0.05% on daily basis
+  2. second KPI is to check if the successful budget is more or equal to  than 99.95% on daily 
+- For an SLI like  time of total successful http requests is more than or equal to 99.95%  in  a month
+  1. first KPI to check if the total time ratio is more than or equal to 99.95% on daily basis
+  2. secont KPI to check if the error budget is less than 0.05 on daily basis. 
   
 ### Final Dashboard
 
@@ -147,6 +152,8 @@ to create a kpi you need a title for the kpi, a metric, current value and target
 **KPIs and Uptime for the whole app**
 
 ![final dashboard](FinalDash.png)
+
+![final dashboard](FinalDash02.png)
 
 **Repeate**
 
